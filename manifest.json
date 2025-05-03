@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "DeepWiki Chrome Extension",
+  "name": "GitHub to DeepWiki",
   "version": "1.0",
-  "description": "A Chrome extension template",
+  "description": "Adds a button to GitHub repository pages to redirect to DeepWiki",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -20,8 +20,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "matches": ["*://github.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
     }
   ],
   "icons": {
