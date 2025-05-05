@@ -30,7 +30,7 @@ jobs:
             icons/
 
       - name: Upload Extension Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deepwiki-chrome-extension
           path: dist/deepwiki-chrome-extension.zip
