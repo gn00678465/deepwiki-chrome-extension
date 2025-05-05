@@ -17,20 +17,20 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Create Extension Package
+      - name: Prepare Extension Files
         run: |
-          mkdir -p dist
-          zip -r dist/deepwiki-chrome-extension.zip \
-            manifest.json \
-            background.js \
-            content.js \
-            popup.html \
-            popup.js \
-            styles.css \
-            icons/
+          mkdir -p dist/extension
+          cp manifest.json dist/extension/
+          cp background.js dist/extension/
+          cp content.js dist/extension/
+          cp popup.html dist/extension/
+          cp popup.js dist/extension/
+          cp styles.css dist/extension/
+          cp -r icons dist/extension/
 
       - name: Upload Extension Artifact
         uses: actions/upload-artifact@v4
         with:
           name: deepwiki-chrome-extension
-          path: dist/deepwiki-chrome-extension.zip
+          path: dist/extension
+          if-no-files-found: error  # 如果找不到檔案則報錯
