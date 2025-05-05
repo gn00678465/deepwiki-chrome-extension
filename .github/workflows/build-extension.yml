@@ -1,0 +1,36 @@
+name: Build Chrome Extension
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Create Extension Package
+        run: |
+          mkdir -p dist
+          zip -r dist/deepwiki-chrome-extension.zip \
+            manifest.json \
+            background.js \
+            content.js \
+            popup.html \
+            popup.js \
+            styles.css \
+            icons/
+
+      - name: Upload Extension Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: deepwiki-chrome-extension
+          path: dist/deepwiki-chrome-extension.zip
