@@ -32,9 +32,8 @@ jobs:
           
       - name: Create ZIP Archive
         run: |
-          cd dist
-          zip -r deepwiki-chrome-extension.zip extension/*
-          mv deepwiki-chrome-extension.zip ../
+          cd dist/extension
+          zip -r ../../deepwiki-chrome-extension.zip .
         
       - name: Upload Extension Artifact
         uses: actions/upload-artifact@v4
